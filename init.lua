@@ -17,3 +17,5 @@ vim.lsp.enable("pyright")
 vim.lsp.enable("html")
 vim.lsp.enable("quick_lint_js")
 
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts) -- Go to declaration
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts) -- Go to definition
