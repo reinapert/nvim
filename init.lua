@@ -19,3 +19,6 @@ vim.lsp.enable("quick_lint_js")
 
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts) -- Go to declaration
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts) -- Go to definition
+
+local ts_builtin = require('telescope.builtin')
+vim.keymap.set('n', 'ff', ts_builtin.find_files, { desc = "Find files" })
