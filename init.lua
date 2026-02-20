@@ -8,6 +8,12 @@ vim.opt.shiftwidth = 4
 -- Convert tabs to spaces
 vim.opt.expandtab = true
 
+-- Use Truecolor
+vim.opt.termguicolors = true
+
+-- Set Colorscheme
+vim.cmd.colorscheme('habamax')
+
 -- Lazy VIM
 require("config.lazy")
 
