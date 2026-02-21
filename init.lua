@@ -23,6 +23,16 @@ vim.lsp.enable("pyright")
 vim.lsp.enable("html")
 vim.lsp.enable("quick_lint_js")
 
+vim.lsp.config(
+    'csharp-ls',
+    {
+        cmd = { 'csharp-ls' },
+        filetypes = { 'cs' },
+        root_markers = { '*.sln', '*.csproj' },
+    }
+)
+vim.lsp.enable("csharp-ls")
+
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts) -- Go to declaration
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts) -- Go to definition
 
