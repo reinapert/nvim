@@ -18,6 +18,12 @@ vim.cmd.colorscheme('habamax')
 require("config.lazy")
 
 -- LSP
+vim.lsp.config(
+    'clangd',
+    {
+        filetypes = { 'c', 'cpp','cc', 'h', 'hpp' },
+    }
+)
 vim.lsp.enable("clangd")
 vim.lsp.enable("pyright")
 vim.lsp.enable("html")
