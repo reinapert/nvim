@@ -33,6 +33,37 @@ vim.lsp.config(
 )
 vim.lsp.enable("csharp-ls")
 
+
+vim.lsp.config(
+    'asm-lsp',
+    {
+        cmd = { 'asm-lsp' },
+        filetypes = { 'asm', 's', 'S' },
+    }
+)
+vim.lsp.enable("asm-lsp")
+
+-- LSP Autocompletion
+-- menuone: Use the popup menu also when there is only one match
+-- noselect: No menu item is pre-selected
+-- popup: Show extra info about the currently selected completion option in a popup window
+vim.opt.completeopt = { "menuone", "noselect", "popup" }
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('my.lsp', {}),
+  callback = function(args)
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
+    if client:supports_method('textDocument/completion') then
+      -- Optional: trigger autocompletion on EVERY keypress. May be slow!
+      -- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+      -- client.server_capabilities.completionProvider.triggerCharacters = chars
+      vim.lsp.completion.enable(true, client.id, args.buf, {autotrigger = true})
+    end
+  end,
+})
+
+-- Keymaps
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts) -- Go to declaration
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts) -- Go to definition
 
